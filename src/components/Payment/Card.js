@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-credit-cards/es/styles-compiled.css';
 import Cards from 'react-credit-cards';
 import check from '../../assets/images/check-icon.png';
-import { paymentTicket } from '../../services/paymentApi';
+import { getTicketByUserId, paymentTicket } from '../../services/paymentApi';
 import { CardContainer, CardForm, ConfirmedContainer, ExpiricyForm, FormDiv, PaymentButton, PaymentContainer, Subtitle, TicketContainer } from '.';
+import Input from '../Form/Input';
 
-export default function Card(props) {
+export default function Card({ ticket, token, modality, hotel, price, confirmed, setConfirmed }) {
   const [state, setState] = useState({
     number: '',
     expiry: '',
@@ -14,7 +15,17 @@ export default function Card(props) {
     focus: '',
   });
 
-  const [confirmed, setConfirmed] = useState(false);
+  useEffect(async() => {
+    try {
+      const ticket = await getTicketByUserId(token);
+      console.log(ticket);
+      if (ticket.status === 'PAID') {
+        setConfirmed(true);
+      }
+    } catch {
+      console.log('deu ruim');
+    }
+  }, []);
   
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
@@ -23,8 +34,9 @@ export default function Card(props) {
   };
 
   async function handleSubmit(e) {
+    console.log(ticket);
     let body = {
-      ticketId: props.ticket.id,
+      ticketId: ticket.id,
       cardData: {
         issuer: 'MasterCard',
         number: state.number,
@@ -33,7 +45,7 @@ export default function Card(props) {
         cvv: state.cvc
       }
     };
-    await paymentTicket(body, props.token)
+    await paymentTicket(body, token)
       .then(() => {
         setConfirmed(true); 
       });
@@ -47,8 +59,8 @@ export default function Card(props) {
     <>
       <Subtitle>Ingresso escolhido</Subtitle>
       <TicketContainer>
-        <p>{props.modality === 'Online' ? props.modality : `${props.modality} + ${props.hotel}`}</p>
-        <span>R$ {props.price}</span>
+        <p>{modality === 'Online' ? modality : `${modality} + ${hotel}`}</p>
+        <span>R$ {price}</span>
       </TicketContainer>
       <Subtitle>Pagamento</Subtitle>
       {(!confirmed ? <PaymentContainer>
@@ -62,7 +74,7 @@ export default function Card(props) {
           />
           <CardForm>
             <FormDiv>
-              <input
+              <Input
                 type='number'
                 name="number"
                 placeholder="Card Number"
