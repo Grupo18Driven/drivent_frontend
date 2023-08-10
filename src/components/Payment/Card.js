@@ -3,8 +3,9 @@ import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import Cards from 'react-credit-cards-2';
 import check from '../../assets/images/check-icon.png';
 import { getTicketByUserId, paymentTicket } from '../../services/paymentApi';
-import { CardContainer, CardForm, ConfirmedContainer, ExpiricyForm, FormDiv, PaymentButton, PaymentContainer, Subtitle, TicketContainer } from '.';
+import { CardContainer, CardForm, ConfirmedContainer, ExpiricyForm, FormDiv, InputStyled, PaymentButton, PaymentContainer, Subtitle, TicketContainer } from '.';
 import Input from '../Form/Input';
+import Button from '../Form/Button';
 
 export default function Card({ ticket, token, modality, hotel, price, confirmed, setConfirmed }) {
   const [state, setState] = useState({
@@ -74,36 +75,36 @@ export default function Card({ ticket, token, modality, hotel, price, confirmed,
           />
           <CardForm>
             <FormDiv>
-              <Input
+              <InputStyled
                 type='number'
                 name="number"
-                placeholder="Card Number"
+                label="Número de Cartão"
                 value={state.number}
                 onChange={handleInputChange}
                 onFocus={handleInputFocus}
               />
               <h3 className="desc">E.g.: 49 ... , 51 ... , 36 ... , 37 ...</h3>
-              <input
+              <InputStyled
                 type="text"
-                placeholder="Name"
+                label="Nome"
                 name="name"
                 value={state.name}
                 onChange={handleInputChange}
                 onFocus={handleInputFocus}
               />
               <ExpiricyForm>
-                <input
+                <InputStyled
                   type="tel"
-                  placeholder="Valid Thru"
+                  label="Válido Até"
                   name="expiry"
                   pattern="\d\d/\d\d"
                   value={state.expiry}
                   onChange={handleInputChange}
                   onFocus={handleInputFocus}
                 />
-                <input
+                <InputStyled
                   type="number"
-                  placeholder="CVC"
+                  label="CVC"
                   name="cvc"
                   pattern="\d{3,4}"
                   value={state.cvc}
@@ -115,13 +116,14 @@ export default function Card({ ticket, token, modality, hotel, price, confirmed,
 
           </CardForm>
         </CardContainer>
-        <PaymentButton
+        <Button
           type="submit"
           onClick={handleSubmit}
           disabled={state.name.length === 0 || state.number.length !== 16 || state.expiry.length !== 5 || state.cvc.length !== 3}
+          style={{ width: 200 }}
         >
           FINALIZAR PAGAMENTO
-        </PaymentButton>
+        </Button>
       </PaymentContainer> : '')}
 
       {(confirmed ? <ConfirmedContainer>

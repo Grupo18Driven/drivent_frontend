@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Description, StyledContainer, Title, OptionsContainer, OptionCard, ReserveButton, UnRegisted } from '../../../components/Payment';
+import { Description, StyledContainer, Title, OptionsContainer, OptionCard, UnRegisted } from '../../../components/Payment';
 import useToken from '../../../hooks/useToken';
 import { getTicketByUserId, reserveTicket } from '../../../services/paymentApi';
 import { getPersonalInformations } from '../../../services/enrollmentApi';
 import Card from '../../../components/Payment/Card';
+import Button from '../../../components/Form/Button';
 
 export default function Payment() {
   const token = useToken();
@@ -127,10 +128,10 @@ export default function Payment() {
                     {(selectedModality === 'Online' || selectedHotel !== null) && (
                       <>
                         <Description>Fechado! O total ficou em <span>R${price}</span>. Agora é só confirmar:</Description>
-                        <ReserveButton
+                        <Button
                           onClick={sendTicket}>
                           RESERVAR INGRESSO
-                        </ReserveButton>
+                        </Button>
                       </>
                     )}
                   </>

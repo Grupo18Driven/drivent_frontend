@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Input from '../Form/Input';
 
 export const UnRegisted = styled.div`
   position: absolute;
@@ -22,63 +23,50 @@ export const StyledContainer = styled.div`
   font-style: normal;
 `;
 export const Title = styled.h1`
-color: #000;
-font-size: 34px;
+  color: #000;
+  font-size: 34px;
 `;
 
 export const Description = styled.h2`
-color: #8E8E8E;
-font-size: 20px;
-margin-top: 20px;
-
-span{
-    font-weight: 700;
-}
-
+  color: #8E8E8E;
+  font-size: 20px;
+  margin-top: 20px;
+  span{
+      font-weight: 700;
+  }
 `;
 
 export const OptionsContainer = styled.div`
-margin-top: 17px;
-margin-bottom: 35px;
-width: 314px;
-height: 144px;
-
-display: flex;
-flex-direction: row;
-justify-content: space-between;
+  margin-top: 17px;
+  margin-bottom: 35px;
+  width: 314px;
+  height: 144px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const OptionCard = styled.div`
-width: 145px;
-height: 145px;
-border-radius: 20px;
-border: 1px solid #CECECE;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-text-align: center;
-    div{
-        color: #454545;
-        font-size: 16px;
-    }
-    h2{
-        color: #898989;
-        font-size: 14px;
-    }
-`;
-
-export const ReserveButton = styled.button`
-margin-top: 15px;
-width: 162px;
-height: 37px;
-border-radius: 4px;
-background: #E0E0E0;
-border: none;
-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.25);
-color: #000;
-text-align: center;
-font-size: 12px;
+  width: 145px;
+  height: 145px;
+  border-radius: 20px;
+  border: 1px solid #CECECE;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  div{
+      color: #454545;
+      font-size: 16px;
+  }
+  h2{
+      color: #898989;
+      font-size: 14px;
+  }
+  :hover{
+  cursor: pointer;
+  }
 `;
 
 export const Subtitle = styled.h2`
@@ -129,24 +117,20 @@ export const CardForm = styled.form`
   width: 80%;
 `;
 
+export const InputStyled = styled(Input)`
+  div {
+    height: 40px;
+  }
+  label {
+    transform: translate(14px, 13px) scale(1);
+  }
+`;
+
 export const FormDiv = styled.div`
   height: 200px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  input {
-    display: block;
-    width: 100%;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-  }
+  gap: 10px;
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
