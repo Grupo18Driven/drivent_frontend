@@ -8,17 +8,30 @@ export async function getTicketTypes(token) {
     },
   });
   return response.data;
-}   
+}
+
+export async function getTicketByUserId(token) {
+  try {
+    const response = await api.get('/tickets', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log('Nenhum ticket registrado!');
+  }
+};
 
 export async function reserveTicket(token, ticketTypeId) {
   try { 
-    const result = await api.post('/tickets', { ticketTypeId }, { 
+    const response = await api.post('/tickets', { ticketTypeId }, { 
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
     toast('Ingresso reservado com sucesso!');
-    return result.data;
+    return response.data;
   } catch (error) {
     toast('Erro ao fazer a reserva do ingresso');
   }
