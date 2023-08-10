@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import 'react-credit-cards/es/styles-compiled.css';
-import Cards from 'react-credit-cards';
+import 'react-credit-cards-2/dist/es/styles-compiled.css';
+import Cards from 'react-credit-cards-2';
 import check from '../../assets/images/check-icon.png';
 import { getTicketByUserId, paymentTicket } from '../../services/paymentApi';
 import { CardContainer, CardForm, ConfirmedContainer, ExpiricyForm, FormDiv, PaymentButton, PaymentContainer, Subtitle, TicketContainer } from '.';
