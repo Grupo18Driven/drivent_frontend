@@ -50,11 +50,11 @@ export default function Payment() {
           }
         } catch {
           setLoading(false);
-          console.log('Nenhum ticket registrado!');
         }
       }
     } catch {
       setRegisterd(false);
+      setLoading(false);
     }
   }, []);
 

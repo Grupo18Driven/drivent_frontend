@@ -3,8 +3,7 @@ import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import Cards from 'react-credit-cards-2';
 import check from '../../assets/images/check-icon.png';
 import { getTicketByUserId, paymentTicket } from '../../services/paymentApi';
-import { CardContainer, CardForm, ConfirmedContainer, ExpiricyForm, FormDiv, InputStyled, PaymentButton, PaymentContainer, Subtitle, TicketContainer } from '.';
-import Input from '../Form/Input';
+import { CardContainer, CardForm, ConfirmedContainer, ExpiricyForm, FormDiv, InputStyled, PaymentContainer, Subtitle, TicketContainer } from '.';
 import Button from '../Form/Button';
 
 export default function Card({ ticket, token, modality, hotel, price, confirmed, setConfirmed }) {
@@ -19,12 +18,11 @@ export default function Card({ ticket, token, modality, hotel, price, confirmed,
   useEffect(async() => {
     try {
       const ticket = await getTicketByUserId(token);
-      console.log(ticket);
       if (ticket.status === 'PAID') {
         setConfirmed(true);
       }
     } catch {
-      console.log('deu ruim');
+
     }
   }, []);
   
@@ -35,7 +33,6 @@ export default function Card({ ticket, token, modality, hotel, price, confirmed,
   };
 
   async function handleSubmit(e) {
-    console.log(ticket);
     let body = {
       ticketId: ticket.id,
       cardData: {

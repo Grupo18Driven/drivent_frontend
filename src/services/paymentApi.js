@@ -18,8 +18,8 @@ export async function getTicketByUserId(token) {
       },
     });
     return response.data;
-  } catch (error) {
-    console.log('Nenhum ticket registrado!');
+  } catch {
+ 
   }
 };
 
@@ -47,6 +47,5 @@ export async function paymentTicket(body, token) {
     toast('Ingresso pago com sucesso!');
   } catch (error) {
     toast('Erro ao fazer a reserva do ingresso');
-    console.log(error.response.config.data);
   }
 };
