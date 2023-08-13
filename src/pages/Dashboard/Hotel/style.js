@@ -37,6 +37,22 @@ export const Title = styled.h1`
   font-size: 34px;
 `;
 
+export const Unauthorized = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 388px;
+  height: 46px;
+
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 20px;
+  color: #8E8E8E;
+`;
+
 export const AllHotelContainer = styled.div`
   width: 620px;
   height: 264px; 
