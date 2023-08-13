@@ -54,6 +54,7 @@ export default function Payment() {
       }
     } catch {
       setRegisterd(false);
+      setLoading(false);
     }
   }, []);
 
