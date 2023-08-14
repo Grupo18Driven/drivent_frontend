@@ -15,7 +15,8 @@ export default function Card({ ticket, token, modality, hotel, price, confirmed,
     focus: '',
   });
 
-  useEffect(async() => {
+  // eslint-disable-next-line
+  useEffect(async () => {
     try {
       const ticket = await getTicketByUserId(token);
       if (ticket.status === 'PAID') {
@@ -25,7 +26,7 @@ export default function Card({ ticket, token, modality, hotel, price, confirmed,
 
     }
   }, []);
-  
+
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
 
@@ -45,7 +46,7 @@ export default function Card({ ticket, token, modality, hotel, price, confirmed,
     };
     await paymentTicket(body, token)
       .then(() => {
-        setConfirmed(true); 
+        setConfirmed(true);
       });
   };
 
