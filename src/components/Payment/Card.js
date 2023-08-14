@@ -15,6 +15,7 @@ export default function Card({ ticket, token, modality, hotel, price, confirmed,
     focus: '',
   });
 
+  // eslint-disable-next-line
   useEffect(async () => {
     try {
       const ticket = await getTicketByUserId(token);
